@@ -36,5 +36,21 @@ exports.getUserByParam = function(req, res){
             if(err)res.json({err: err, message: 'Id not found'});
             res.json({message: data});
         });
+        break;
+        case 'email':
+        model.findOne({email: value}, '-password', function(err, data){
+            if(err) res.json({err: err, message: 'Email not found'});
+            res.json({message: data});
+        });
+        break;
+        case 'name':
+        model.find({name: value}, '-password', function(err, data){
+            if(err) res.json({err: err, message:'Name not found'});
+            res.json({message: data});
+        });
+        break;
+        default:
+        res.json({message: 'could not find resource'});
+        break;
     }
 }
