@@ -26,3 +26,15 @@ exports.deleteUser = function(req, res){
         res.json({message: 'the source was deleted'});
     });
 }
+
+exports.getUserByParam = function(req, res){
+    var key = req.params.key;
+    var value = req.params.value;
+    switch(key){
+        case 'id':
+        model.findbyId(value, '-password', function(err, data){
+            if(err)res.json({err: err, message: 'Id not found'});
+            res.json({message: data});
+        });
+    }
+}
