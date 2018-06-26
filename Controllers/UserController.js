@@ -50,8 +50,20 @@ exports.getUserByParam = function(req, res){
         });
         break;
         default:
-        res.json({message: 'could not find resource'});
+        res.json({message: 'Could not find resource'});
         break;
     }
 }
 
+exports.updateUser = function(req, res){
+    var id = req.params.id;
+    var update = {
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password 
+    };
+    model.findByAndUpdate(id, update, function(err){
+        if(err) res.json({err: err, message: 'Update error'});
+        res.json({message: update});
+    });
+}
