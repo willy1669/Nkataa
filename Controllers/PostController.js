@@ -12,5 +12,10 @@ exports.addPost = function(req, res){
     });
 }
 
-
+exports.getPost = function(req, res){
+    model.find(function(err, Post){
+        if(err) res.json({err: err, message: 'Post not found'});
+        res.json(posts);
+    });
+}
 
