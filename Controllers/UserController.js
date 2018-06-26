@@ -23,6 +23,6 @@ exports.deleteUser = function(req, res){
     var options = {_id: req.params.id};
     model.remove(options, function(err){
         if(err) res.json({err: err, message: 'the source could not be deleted'});
-        res.json({message: 'te resource was deleted'});
+        res.json({message: 'the source was deleted'});
     });
 }
