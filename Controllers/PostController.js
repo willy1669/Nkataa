@@ -27,3 +27,14 @@ exports.deletePost = function(req,res){
     });
 }
 
+exports.updatePost = function(req, res){
+    var id = req.params.id;
+    var update = {
+        postBody: req.body.postBody
+    };
+    model.findByIdAndUpdate(id, update, function(err){
+        if(err) res.json({err: err, message: 'Update error'});
+        res.json({message: update});
+    });
+}
+
