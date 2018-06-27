@@ -11,6 +11,12 @@ exports.addComment = function(req, res){
         if(err) res.json({err: err, message: 'Comment could not be found'});
         res.json({message: 'Comment was created successfully'});
     });
-    
+
+exports.getComment = function(req,res){
+    model.find(comments, function(err){
+        if(err) res.json({err: err, message: 'Something went wrong'});
+        res.json({comments});
+    });
+};
 
 }
