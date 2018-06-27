@@ -11,6 +11,7 @@ exports.addComment = function(req, res){
         if(err) res.json({err: err, message: 'Comment could not be found'});
         res.json({message: 'Comment was created successfully'});
     });
+}
 
 exports.getComment = function(req,res){
     model.find(comments, function(err){
@@ -27,4 +28,13 @@ exports.deleteComment = function(req,res){
     });
 };
 
+exports.updateComment = function(req, res){
+    var id = req.params.id;
+    var update = {
+        commentBody = req.body.commentBody
+    };
+    model.findByIdAndUpdate(id, update, function(err){
+        if(err) res.json({err: err, message: 'Update error'});
+        res.json({message: update});
+    });
 }
