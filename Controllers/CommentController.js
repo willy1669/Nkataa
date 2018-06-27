@@ -19,4 +19,12 @@ exports.getComment = function(req,res){
     });
 };
 
+exports.deleteComment = function(req,res){
+    var options = {_id:req.params.id};
+    model.remove(options, function(err){
+        if(err) res.json({err: err, message: 'The resource could not be deleted'});
+        res.json({message: 'The comment was deleted'});
+    });
+};
+
 }
